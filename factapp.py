@@ -10,12 +10,26 @@ import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
 import nltk
 import re
-
+import zipfile
 # Download NLTK stopwords (if not already downloaded)
 nltk.download('stopwords')
 
+# Path to your compressed model file
+compressed_file = 'rf_2.joblib.zip'
+# Extracted file name (remove .zip extension)
+extracted_file = 'rf_2.joblib'
+
+# Extract the compressed file
+with zipfile.ZipFile(compressed_file, 'r') as zip_ref:
+    zip_ref.extractall(extracted_file)
+
+# Load the model
+model = joblib.load(extracted_file)
+
+
+
 # Load rf model and vectorizer
-model = joblib.load('rf_2.joblib')
+#model = joblib.load('rf_2.joblib')
 cv = joblib.load('cv_2.joblib')
 
 # Set up Tesseract executable path if needed (adjust the path accordingly)
