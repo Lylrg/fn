@@ -11,6 +11,7 @@ from nltk.corpus import stopwords
 import nltk
 import re
 import zipfile
+import os
 # Download NLTK stopwords (if not already downloaded)
 nltk.download('stopwords')
 
@@ -21,10 +22,11 @@ extracted_file = 'rf_2.joblib'
 
 # Extract the compressed file
 with zipfile.ZipFile(compressed_file, 'r') as zip_ref:
-    zip_ref.extractall(extracted_file)
-
+    zip_ref.extractall()
+# Absolute path to the extracted model file
+model_path = os.path.abspath(extracted_file)
 # Load the model
-model = joblib.load(extracted_file)
+model = joblib.load(model_path)
 
 
 
