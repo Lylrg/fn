@@ -20,11 +20,15 @@ compressed_file = 'rf_2.joblib.zip'
 # Extracted file name (remove .zip extension)
 extracted_file = 'rf_2.joblib'
 
+# Example: Relative path to a directory named 'models' in the current working directory
+extract_path = './models/'
+
+# Ensure the extraction path exists
+os.makedirs(extract_path, exist_ok=True)
+
 # Extract the compressed file
 with zipfile.ZipFile(compressed_file, 'r') as zip_ref:
-    zip_ref.extractall()
-# Absolute path to the extracted model file
-model_path = os.path.abspath(extracted_file)
+    zip_ref.extract(extracted_file, extract_path)
 # Load the model
 model = joblib.load(model_path)
 
