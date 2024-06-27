@@ -29,6 +29,9 @@ os.makedirs(extract_path, exist_ok=True)
 # Extract the compressed file
 with zipfile.ZipFile(compressed_file, 'r') as zip_ref:
     zip_ref.extract(extracted_file, extract_path)
+
+# Absolute path to the extracted model file
+model_path = os.path.join(extract_path, extracted_file)
 # Load the model
 model = joblib.load(model_path)
 
